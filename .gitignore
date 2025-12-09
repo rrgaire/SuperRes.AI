@@ -1,0 +1,37 @@
+# --- OS / IDE System Files ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+
+# --- Python / Backend ---
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+backend/.env
+
+# --- Node / Frontend ---
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.env
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+# --- AI Model Weights (CRITICAL) ---
+# We ignore these so you don't push 200MB+ files to GitHub
+*.pth
+*.onnx
+*.pb
+backend/weights/
+backend/core/upsampler/weights/
+backend/core/face_enhancer/weights/
+
+# --- Docker ---
+# We keep Dockerfiles and compose.yaml, but ignore local overrides
+docker-compose.override.yml
