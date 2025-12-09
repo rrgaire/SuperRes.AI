@@ -1,0 +1,28 @@
+# compose.yaml
+name: my-app
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend_api
+    restart: always
+    volumes:
+      - ./backend/core/upsampler/weights:/app/core/upsampler/weights
+      - ./backend/core/face_enhancer/weights:/app/core/face_enhancer/weights
+    ports:
+      - "8000:8000"  # Expose 8000 for local testing (optional, can be removed if using Nginx proxy)
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend_ui
+    restart: always
+    ports:
+      - "80:80"      # Maps localhost:80 to container:80
+    depends_on:
+      - backend      # Waits for backend to start
